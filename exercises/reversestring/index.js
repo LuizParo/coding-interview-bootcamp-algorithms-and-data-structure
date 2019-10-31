@@ -25,15 +25,19 @@
 // };
 
 // solution #2
+// function reverse(str) {
+//     let reversed = '';
+
+//     for (let character of str) {
+//         reversed = character + reversed;
+//     }
+
+//     return reversed;
+// };
+
+// solution #3
 function reverse(str) {
-    let reversed = '';
-
-    for (let character of str) {
-        reversed = character + reversed;
-    }
-
-    return reversed;
+    return str.split('').reduce((reversed, character) => character + reversed, '');
 };
-
 
 module.exports = reverse;
