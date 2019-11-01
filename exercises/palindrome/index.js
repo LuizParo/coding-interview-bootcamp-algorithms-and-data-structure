@@ -19,12 +19,17 @@
 // };
 
 // solution #1
-function palindrome(str) {
-    const reversed = str.split('')
-                        .reverse()
-                        .join('');
+// function palindrome(str) {
+//     const reversed = str.split('')
+//                         .reverse()
+//                         .join('');
 
-    return str === reversed;
+//     return str === reversed;
+// };
+
+// solution #2
+function palindrome(str) {
+    return str.split('').every((char, index) => char === str.charAt(str.length - index - 1));
 };
 
 module.exports = palindrome;
