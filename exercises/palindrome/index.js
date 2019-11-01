@@ -8,14 +8,23 @@
 //   palindrome("abcdefg") === false
 
 // my first solution
+// function palindrome(str) {
+//     let isPalindrome = true;
+
+//     for (let index = 0, reverseIndex = str.length - 1; index < Math.ceil(str.length / 2); index++, reverseIndex--) {
+//         isPalindrome = isPalindrome && (str.charAt(index) == str.charAt(reverseIndex));
+//     }
+
+//     return isPalindrome;
+// };
+
+// solution #1
 function palindrome(str) {
-    let isPalindrome = true;
+    const reversed = str.split('')
+                        .reverse()
+                        .join('');
 
-    for (let index = 0, reverseIndex = str.length - 1; index < Math.ceil(str.length / 2); index++, reverseIndex--) {
-        isPalindrome = isPalindrome && (str.charAt(index) == str.charAt(reverseIndex));
-    }
-
-    return isPalindrome;
+    return str === reversed;
 };
 
 module.exports = palindrome;
