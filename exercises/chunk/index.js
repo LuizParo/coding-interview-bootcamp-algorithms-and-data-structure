@@ -9,25 +9,42 @@
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
 // my first solutiom
+// function chunk(array, size) {
+//     const numberOfChunks = Math.ceil(array.length / size);
+//     const chunkedArray = [];
+//     let currentArrayIndex = 0;
+
+//     for (let index = 0; index < numberOfChunks; index++) {
+//         const chunk = [];
+
+//         for (let chunkIndex = 0; chunkIndex < size && currentArrayIndex < array.length; chunkIndex++) {
+//             const currentArrayElement = array[currentArrayIndex];
+
+//             chunk[chunkIndex] = currentArrayElement;
+//             currentArrayIndex++;
+//         }
+
+//         chunkedArray[index] = chunk;
+//     }
+
+//     return chunkedArray;
+// };
+
+// solution #1
 function chunk(array, size) {
-    const numberOfChunks = Math.ceil(array.length / size);
-    const chunkedArray = [];
-    let currentArrayIndex = 0;
+    const chunked = [];
 
-    for (let index = 0; index < numberOfChunks; index++) {
-        const chunk = [];
+    for (let element of array) {
+        const last = chunked[chunked.length - 1];
 
-        for (let chunkIndex = 0; chunkIndex < size && currentArrayIndex < array.length; chunkIndex++) {
-            const currentArrayElement = array[currentArrayIndex];
-
-            chunk[chunkIndex] = currentArrayElement;
-            currentArrayIndex++;
+        if (!last || last.length === size) {
+            chunked.push([element]);
+        } else {
+            last.push(element);
         }
-
-        chunkedArray[index] = chunk;
     }
 
-    return chunkedArray;
+    return chunked;
 };
 
 module.exports = chunk;
