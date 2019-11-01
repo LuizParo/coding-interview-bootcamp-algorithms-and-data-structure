@@ -13,6 +13,31 @@
 //   buzz
 
 // my first solution
+// function fizzBuzz(n) {
+//     for (let i = 1; i <= n; i++) {
+//         const isFizz = i % 3 === 0;
+//         const isBuzz = i % 5 === 0;
+
+//         if (isFizz && isBuzz) {
+//             console.log("fizzbuzz");
+//             continue;
+//         }
+
+//         if (isFizz) {
+//             console.log('fizz');
+//             continue;
+//         }
+
+//         if (isBuzz) {
+//             console.log('buzz');
+//             continue;
+//         }
+
+//         console.log(i);
+//     }
+// };
+
+// solution #1
 function fizzBuzz(n) {
     for (let i = 1; i <= n; i++) {
         const isFizz = i % 3 === 0;
@@ -20,20 +45,13 @@ function fizzBuzz(n) {
 
         if (isFizz && isBuzz) {
             console.log("fizzbuzz");
-            continue;
-        }
-
-        if (isFizz) {
+        } else if (isFizz) {
             console.log('fizz');
-            continue;
-        }
-
-        if (isBuzz) {
+        } else if (isBuzz) {
             console.log('buzz');
-            continue;
+        } else {
+            console.log(i);
         }
-
-        console.log(i);
     }
 };
 
