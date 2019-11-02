@@ -18,19 +18,36 @@
 //       '####'
 
 // my first solution
-function steps(n) {
-    for (let i = 0; i < n; i++) {
-        let currentStep = '';
+// function steps(n) {
+//     for (let row = 0; row < n; row++) {
+//         let currentStep = '';
 
-        for (let j = 0; j < n; j++) {
-            if (j <= i) {
-                currentStep += '#';
+//         for (let column = 0; column < n; column++) {
+//             if (column <= row) {
+//                 currentStep += '#';
+//             } else {
+//                 currentStep += ' ';
+//             }
+//         }
+
+//         console.log(currentStep);
+//     }
+// };
+
+// solution #1
+function steps(n) {
+    for (let row = 0; row < n; row++) {
+        let stair = '';
+
+        for (let column = 0; column < n; column++) {
+            if (column <= row) {
+                stair += '#';
             } else {
-                currentStep += ' ';
+                stair += ' ';
             }
         }
 
-        console.log(currentStep);
+        console.log(stair);
     }
 };
 
