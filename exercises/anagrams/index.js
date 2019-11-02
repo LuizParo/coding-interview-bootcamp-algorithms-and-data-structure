@@ -28,32 +28,45 @@
 //     return isAnagram;
 // };
 
+// function _toCharMap(string = '') {
+//     const charMap = {};
+
+//     for (let char of string.replace(/[^\w]/g, '').toLowerCase()) {
+//         charMap[char] = ++charMap[char] || 1;
+//     }
+
+//     return charMap;
+// };
+
 // solution #1
+// function anagrams(stringA, stringB) {
+//     const aCharMap = _toCharMap(stringA);
+//     const bCharMap = _toCharMap(stringB);
+
+//     if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+//         return false;
+//     }
+
+//     for (let char in aCharMap) {
+//         if (aCharMap[char] !== bCharMap[char]) {
+//             return false;
+//         }
+//     }
+
+//     return true;
+// };
+
+// solution 2
 function anagrams(stringA, stringB) {
-    const aCharMap = _toCharMap(stringA);
-    const bCharMap = _toCharMap(stringB);
-
-    if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
-        return false;
-    }
-
-    for (let char in aCharMap) {
-        if (aCharMap[char] !== bCharMap[char]) {
-            return false;
-        }
-    }
-
-    return true;
+    return _cleanString(stringA) === _cleanString(stringB);
 };
 
-function _toCharMap(string = '') {
-    const charMap = {};
-
-    for (let char of string.replace(/[^\w]/g, '').toLowerCase()) {
-        charMap[char] = ++charMap[char] || 1;
-    }
-
-    return charMap;
-};
+function _cleanString(str) {
+    return str.replace(/[^\w]/g, '')
+              .toLowerCase()
+              .split('')
+              .sort()
+              .join('');
+}
 
 module.exports = anagrams;
