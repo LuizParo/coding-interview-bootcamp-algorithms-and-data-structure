@@ -9,23 +9,41 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 // my first solution
-function anagrams(stringA, stringB) {
-    const charMapStringA = _toCharMap(stringA);
-    const charMapStringB = _toCharMap(stringB);
-    let isAnagram = true;
+// function anagrams(stringA, stringB) {
+//     const charMapStringA = _toCharMap(stringA);
+//     const charMapStringB = _toCharMap(stringB);
+//     let isAnagram = true;
 
-    if (Object.keys(charMapStringA).length != Object.keys(charMapStringB).length) {
+//     if (Object.keys(charMapStringA).length != Object.keys(charMapStringB).length) {
+//         return false;
+//     }
+
+//     for (let char in charMapStringA) {
+//         isAnagram = isAnagram
+//             && charMapStringA.hasOwnProperty(char)
+//             && charMapStringB.hasOwnProperty(char)
+//             && charMapStringA[char] == charMapStringB[char];
+//     }
+
+//     return isAnagram;
+// };
+
+// solution #1
+function anagrams(stringA, stringB) {
+    const aCharMap = _toCharMap(stringA);
+    const bCharMap = _toCharMap(stringB);
+
+    if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
         return false;
     }
 
-    for (let char in charMapStringA) {
-        isAnagram = isAnagram
-            && charMapStringA.hasOwnProperty(char)
-            && charMapStringB.hasOwnProperty(char)
-            && charMapStringA[char] == charMapStringB[char];
+    for (let char in aCharMap) {
+        if (aCharMap[char] !== bCharMap[char]) {
+            return false;
+        }
     }
 
-    return isAnagram;
+    return true;
 };
 
 function _toCharMap(string = '') {
