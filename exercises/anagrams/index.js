@@ -8,6 +8,34 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+// my first solution
+function anagrams(stringA, stringB) {
+    const charMapStringA = _toCharMap(stringA);
+    const charMapStringB = _toCharMap(stringB);
+    let isAnagram = true;
+
+    if (Object.keys(charMapStringA).length != Object.keys(charMapStringB).length) {
+        return false;
+    }
+
+    for (let char in charMapStringA) {
+        isAnagram = isAnagram
+            && charMapStringA.hasOwnProperty(char)
+            && charMapStringB.hasOwnProperty(char)
+            && charMapStringA[char] == charMapStringB[char];
+    }
+
+    return isAnagram;
+};
+
+function _toCharMap(string = '') {
+    const charMap = {};
+
+    for (let char of string.replace(/[^\w]/g, '').toLowerCase()) {
+        charMap[char] = ++charMap[char] || 1;
+    }
+
+    return charMap;
+};
 
 module.exports = anagrams;
