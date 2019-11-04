@@ -14,6 +14,49 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+// my first iterative solution
+// function pyramid(n) {
+//     const numberOfColumns = n * 2 - 1;
+//     const middleOfThePyramid = n - 1;
+
+//     for (let row = 0; row < n; row++) {
+//         let currentStep = '';
+
+//         for (let column = 0; column < numberOfColumns; column++) {
+//             if (column >= middleOfThePyramid - row && column <= middleOfThePyramid + row) {
+//                 currentStep += '#';
+//             } else {
+//                 currentStep += ' ';
+//             }
+//         }
+
+//         console.log(currentStep);
+//     }
+// };
+
+// my first recursive solution
+function pyramid(n = 0, row = 0, currentStep = '') {
+    const numberOfColumns = n * 2 - 1;
+    const middleOfThePyramid = n - 1;
+    const lengthOfStep = currentStep.length;
+
+    if (row === n) {
+        return;
+    }
+
+    if (currentStep.length === numberOfColumns) {
+        console.log(currentStep);
+        pyramid(n, row + 1);
+        return;
+    }
+
+    if (lengthOfStep >= middleOfThePyramid - row && lengthOfStep <= middleOfThePyramid + row) {
+        currentStep += '#';
+    } else {
+        currentStep += ' ';
+    }
+
+    pyramid(n, row, currentStep);
+};
 
 module.exports = pyramid;
