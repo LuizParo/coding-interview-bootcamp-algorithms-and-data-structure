@@ -9,10 +9,10 @@
 
 // function _isVowel(char) {
 //     return char === 'a'
-//         || char == 'e'
-//         || char == 'i'
-//         || char == 'o'
-//         || char == 'u';
+//         || char === 'e'
+//         || char === 'i'
+//         || char === 'o'
+//         || char === 'u';
 // };
 
 // my first solution
@@ -24,17 +24,23 @@
 // };
 
 // solution #1
+// function vowels(str) {
+//     let count = 0;
+//     const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+//     for (let char of str.toLowerCase()) {
+//         if (vowels.includes(char)) {
+//             count++;
+//         }
+//     }
+
+//     return count;
+// };
+
+// solution #2
 function vowels(str) {
-    let count = 0;
-    const vowels = ['a', 'e', 'i', 'o', 'u'];
-
-    for (let char of str.toLowerCase()) {
-        if (vowels.includes(char)) {
-            count++;
-        }
-    }
-
-    return count;
+    const matches = str.match(/[aeiou]/gi);
+    return matches ? matches.length : 0;
 };
 
 module.exports = vowels;
