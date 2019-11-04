@@ -18,11 +18,25 @@
 // };
 
 // my first iterative solution
+// function fib(n) {
+//     const result = [0, 1];
+
+//     for (let i = 2; i <= n; i++) {
+//         result[i] = result[i - 1] + result[i - 2];
+//     }
+
+//     return result[n];
+// };
+
+// solution #1
 function fib(n) {
     const result = [0, 1];
 
     for (let i = 2; i <= n; i++) {
-        result[i] = result[i - 1] + result[i - 2];
+        const a = result[i - 1];
+        const b = result[i - 2];
+
+        result.push(a + b);
     }
 
     return result[n];
