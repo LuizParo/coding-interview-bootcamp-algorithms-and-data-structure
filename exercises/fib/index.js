@@ -43,12 +43,38 @@
 // };
 
 // solution #2
+// function fib(n) {
+//     if (n < 2) {
+//         return n;
+//     }
+
+//     return fib(n - 1) + fib(n - 2); 
+// };
+
+// solution #3
+function memoize(fn) {
+    let cache = {};
+
+    return function(...args) {
+        if (cache[args]) {
+            return cache[args];
+        }
+
+        const result = fn.apply(this, args);
+        cache[args] = result;
+
+        return result;
+    };
+};
+
 function fib(n) {
     if (n < 2) {
         return n;
     }
 
-    return fib(n - 1) + fib(n - 2);
+    return memoizedFib(n - 1) + memoizedFib(n - 2);
 };
 
-module.exports = fib;
+const memoizedFib = memoize(fib);
+
+module.exports = memoizedFib;
