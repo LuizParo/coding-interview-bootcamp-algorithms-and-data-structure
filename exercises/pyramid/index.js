@@ -35,28 +35,47 @@
 // };
 
 // my first recursive solution
+// function pyramid(n = 0, row = 0, currentStep = '') {
+//     const numberOfColumns = n * 2 - 1;
+//     const middleOfThePyramid = n - 1;
+//     const lengthOfStep = currentStep.length;
+
+//     if (row === n) {
+//         return;
+//     }
+
+//     if (currentStep.length === numberOfColumns) {
+//         console.log(currentStep);
+//         pyramid(n, row + 1);
+//         return;
+//     }
+
+//     if (lengthOfStep >= middleOfThePyramid - row && lengthOfStep <= middleOfThePyramid + row) {
+//         currentStep += '#';
+//     } else {
+//         currentStep += ' ';
+//     }
+
+//     pyramid(n, row, currentStep);
+// };
+
+// solution #1
 function pyramid(n = 0, row = 0, currentStep = '') {
-    const numberOfColumns = n * 2 - 1;
-    const middleOfThePyramid = n - 1;
-    const lengthOfStep = currentStep.length;
+    const midpoint = Math.floor((2 * n - 1) / 2);
 
-    if (row === n) {
-        return;
+    for (let row = 0; row < n; row++) {
+        let level = '';
+
+        for (let column = 0; column < 2 * n - 1; column++) {
+            if (midpoint - row <= column && midpoint + row >= column) {
+                level += '#';
+            } else {
+                level += ' ';
+            }
+        }
+
+        console.log(level);
     }
-
-    if (currentStep.length === numberOfColumns) {
-        console.log(currentStep);
-        pyramid(n, row + 1);
-        return;
-    }
-
-    if (lengthOfStep >= middleOfThePyramid - row && lengthOfStep <= middleOfThePyramid + row) {
-        currentStep += '#';
-    } else {
-        currentStep += ' ';
-    }
-
-    pyramid(n, row, currentStep);
 };
 
 module.exports = pyramid;
