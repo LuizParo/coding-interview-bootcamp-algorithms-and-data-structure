@@ -10,6 +10,32 @@
 //   s.pop(); // returns 2
 //   s.pop(); // returns 1
 
-class Stack {}
+// my first solution
+class Stack {
+
+    constructor() {
+        this._elements = [];
+        this._lastIndex = -1;
+    }
+
+    push(element) {
+        this._elements[++this._lastIndex] = element;
+    }
+
+    pop() {
+        if (this._lastIndex === -1) {
+            return;
+        }
+
+        const elementToBeRemoved = this._elements[this._lastIndex];
+        this._elements.splice(this._lastIndex--);
+
+        return elementToBeRemoved;
+    }
+
+    peek() {
+        return this._elements[this._lastIndex];
+    }
+};
 
 module.exports = Stack;
