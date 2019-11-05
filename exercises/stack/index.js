@@ -11,30 +11,50 @@
 //   s.pop(); // returns 1
 
 // my first solution
+// class Stack {
+
+//     constructor() {
+//         this._elements = [];
+//         this._lastIndex = -1;
+//     }
+
+//     push(element) {
+//         this._elements[++this._lastIndex] = element;
+//     }
+
+//     pop() {
+//         if (this._lastIndex === -1) {
+//             return;
+//         }
+
+//         const elementToBeRemoved = this._elements[this._lastIndex];
+//         this._elements.splice(this._lastIndex--);
+
+//         return elementToBeRemoved;
+//     }
+
+//     peek() {
+//         return this._elements[this._lastIndex];
+//     }
+// };
+
+// my first solution
 class Stack {
 
     constructor() {
-        this._elements = [];
-        this._lastIndex = -1;
+        this.data = [];
     }
 
-    push(element) {
-        this._elements[++this._lastIndex] = element;
+    push(record) {
+        this.data.push(record);
     }
 
     pop() {
-        if (this._lastIndex === -1) {
-            return;
-        }
-
-        const elementToBeRemoved = this._elements[this._lastIndex];
-        this._elements.splice(this._lastIndex--);
-
-        return elementToBeRemoved;
+        return this.data.pop();
     }
 
     peek() {
-        return this._elements[this._lastIndex];
+        return this.data[this.data.length - 1];
     }
 };
 
