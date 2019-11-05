@@ -8,6 +8,29 @@
 //     q.add(1);
 //     q.remove(); // returns 1;
 
-class Queue {}
+// my first solution
+class Queue {
+
+    constructor() {
+        this._internalArray = [];
+        this._tailIndex = 0;
+    }
+
+    add(element) {
+        this._internalArray[this._tailIndex] = element;
+        this._tailIndex++;
+    }
+
+    remove() {
+        if (this._tailIndex === 0) {
+            return;
+        }
+
+        const headElementToBeRemoved = this._internalArray[0];
+        this._internalArray = this._internalArray.splice(1, --this._tailIndex);
+
+        return headElementToBeRemoved;
+    }
+}
 
 module.exports = Queue;

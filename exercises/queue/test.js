@@ -29,3 +29,20 @@ test('Order of elements is maintained', () => {
   expect(q.remove()).toEqual(3);
   expect(q.remove()).toEqual(undefined);
 });
+
+test('Order of elements is maintained after adding and removing interchangeably', () => {
+  const q = new Queue();
+  q.add(1);
+  q.add(2);
+  q.add(3);
+
+  expect(q.remove()).toEqual(1);
+
+  q.add(4);
+  q.add(5);
+
+  expect(q.remove()).toEqual(2);
+  expect(q.remove()).toEqual(3);
+  expect(q.remove()).toEqual(4);
+  expect(q.remove()).toEqual(5);
+});
