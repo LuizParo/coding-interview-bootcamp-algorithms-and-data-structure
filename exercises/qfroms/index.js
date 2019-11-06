@@ -15,35 +15,76 @@
 const Stack = require('./stack');
 
 // my first solution
+// class Queue {
+
+//     constructor() {
+//         this._stackOne = new Stack();
+//         this._stackTwo = new Stack();
+//     }
+
+//     add(element) {
+//         while(this._stackTwo.peek()) {
+//             this._stackOne.push(this._stackTwo.pop());
+//         }
+
+//         this._stackOne.push(element);
+//     }
+
+//     remove() {
+//         while(this._stackOne.peek()) {
+//             this._stackTwo.push(this._stackOne.pop());
+//         }
+
+//         return this._stackTwo.pop();
+//     }
+
+//     peek() {
+//         while(this._stackOne.peek()) {
+//             this._stackTwo.push(this._stackOne.pop());
+//         }
+
+//         return this._stackTwo.peek();
+//     }
+// }
+
+// solution #1
 class Queue {
 
     constructor() {
-        this._stackOne = new Stack();
-        this._stackTwo = new Stack();
+        this.first = new Stack();
+        this.second = new Stack();
     }
 
-    add(element) {
-        while(this._stackTwo.peek()) {
-            this._stackOne.push(this._stackTwo.pop());
-        }
-
-        this._stackOne.push(element);
+    add(record) {
+        this.first.push(record);
     }
 
     remove() {
-        while(this._stackOne.peek()) {
-            this._stackTwo.push(this._stackOne.pop());
+        while(this.first.peek()) {
+            this.second.push(this.first.pop());
         }
 
-        return this._stackTwo.pop();
+        const record = this.second.pop();
+
+        while(this.second.peek()) {
+            this.first.push(this.second.pop());
+        }
+
+        return record;
     }
 
     peek() {
-        while(this._stackOne.peek()) {
-            this._stackTwo.push(this._stackOne.pop());
+        while(this.first.peek()) {
+            this.second.push(this.first.pop());
         }
 
-        return this._stackTwo.peek();
+        const record = this.second.peek();
+
+        while(this.second.peek()) {
+            this.first.push(this.second.pop());
+        }
+
+        return record;
     }
 }
 
