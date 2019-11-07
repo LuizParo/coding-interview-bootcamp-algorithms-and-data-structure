@@ -12,9 +12,10 @@ test('Node is a class', () => {
 
 describe('A Node', () => {
   test('has properties "data" and "next"', () => {
-    const node = new Node('a', 'b');
-    expect(node.data).toEqual('a');
-    expect(node.next).toEqual('b');
+    const node = new Node('b', 'a', 'c');
+    expect(node.data).toEqual('b');
+    expect(node.prev).toEqual('a');
+    expect(node.next).toEqual('c');
   });
 });
 
@@ -54,9 +55,9 @@ describe('GetLast', () => {
   test('returns the last element', () => {
     const l = new List();
     l.insertFirst(2);
-    expect(l.getLast()).toEqual({ data: 2, next: null });
+    expect(l.getLast()).toEqual({ data: 2, prev: null, next: null });
     l.insertFirst(1);
-    expect(l.getLast()).toEqual({ data: 2, next: null });
+    expect(l.getLast()).toEqual({ data: 2, prev: null, next: null });
   });
 });
 
@@ -147,7 +148,7 @@ describe('InsertLast', () => {
   });
 });
 
-describe.skip('GetAt', () => {
+describe('GetAt', () => {
   test('returns the node at given index', () => {
     const l = new List();
     expect(l.getAt(10)).toEqual(null);
@@ -164,7 +165,7 @@ describe.skip('GetAt', () => {
   });
 });
 
-describe.skip('RemoveAt', () => {
+describe('RemoveAt', () => {
   test('removeAt doesnt crash on an empty list', () => {
     const l = new List();
     expect(() => {
