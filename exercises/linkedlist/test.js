@@ -55,9 +55,12 @@ describe('GetLast', () => {
   test('returns the last element', () => {
     const l = new List();
     l.insertFirst(2);
-    expect(l.getLast()).toEqual({ data: 2, prev: null, next: null });
+    expect(l.getLast().data).toEqual(2);
+    expect(l.getLast().next).toEqual(null);
+
     l.insertFirst(1);
-    expect(l.getLast()).toEqual({ data: 2, prev: null, next: null });
+    expect(l.getLast().data).toEqual(2);
+    expect(l.getLast().next).toEqual(null);
   });
 });
 
@@ -201,9 +204,14 @@ describe('RemoveAt', () => {
     l.insertLast(2);
     l.insertLast(3);
     l.insertLast(4);
+    expect(l.getAt(0).data).toEqual(1);
     expect(l.getAt(1).data).toEqual(2);
+    expect(l.getAt(2).data).toEqual(3);
+    expect(l.getAt(3).data).toEqual(4);
     l.removeAt(1);
+    expect(l.getAt(0).data).toEqual(1);
     expect(l.getAt(1).data).toEqual(3);
+    expect(l.getAt(2).data).toEqual(4);
   });
 
   test('removeAt works on the last node', () => {

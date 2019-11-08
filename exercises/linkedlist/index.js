@@ -30,9 +30,14 @@ class LinkedList {
 
         previousFirstNode.prev = newFirstNode;
 
-        this.length++;
-
         this.head = newFirstNode;
+
+        if (this.length === 1) {
+            this.tail.next = null;
+            this.tail.prev = newFirstNode;
+        }
+
+        this.length++;
     }
 
     insertLast(element) {
@@ -49,6 +54,7 @@ class LinkedList {
 
         if (this.length === 1) {
             this.head.next = newTailNode;
+            this.head.prev = null;
         }
 
         this.length++;
@@ -59,11 +65,17 @@ class LinkedList {
             return null;
         }
 
+        if (this.length === 1) {
+            this.clear();
+            return;
+        }
+
         this.head = this.head.next;
         this.length--;
 
         if (this.length === 1) {
-            this.tail = this.head;
+            this.tail.next = null;
+            this.tail.prev = this.head;
         }
     }
 
@@ -77,10 +89,15 @@ class LinkedList {
             return;
         }
 
-        let newLastNode = this.getAt(this.length - 2);
+        let newLastNode = this.tail.prev;
         newLastNode.next = null;
 
         this.length--;
+
+        if (this.length === 1) {
+            this.head.next = newLastNode;
+            this.head.prev = null;
+        }
 
         if (this.length <= 0) {
             return this._insertFirstElement(newLastNode.data);
@@ -90,13 +107,18 @@ class LinkedList {
     }
 
     removeAt(index) {
-        if (this.length === 0) {
-            return;
+        if (!this._checkValidIndex(index)) {
+            return null;
         }
 
-        if (this.length === 1) {
-            this.clear();
-            return;
+        if (index === 0) {
+            this.removeFirst();
+            return null;
+        }
+
+        if (index === this.length - 1) {
+            this.removeLast();
+            return null;
         }
 
         const nodeToBeRemoved = this.getAt(index);
@@ -105,6 +127,15 @@ class LinkedList {
 
         prev.next = next;
         next.prev = prev;
+
+        if (index === 1) {
+            this.head.next = next;
+            this.head.prev = null;
+
+            this.tail.prev = prev;
+            this.tail.next = null;
+        }
+
         this.length--;
     }
 
@@ -117,7 +148,7 @@ class LinkedList {
     }
 
     getAt(index) {
-        if (this.length === 0) {
+        if (!this._checkValidIndex(index)) {
             return null;
         }
 
@@ -154,9 +185,18 @@ class LinkedList {
     }
 
     _insertFirstElement(element) {
-        this.head = new Node(element, null, null);
-        this.tail = new Node(element, null, null);
+        const head = new Node(element, null, null);
+        const tail = new Node(element, this.head, null);
+
+        head.next = tail;
+
+        this.head = head;
+        this.tail = tail;
         this.length++;
+    }
+
+    _checkValidIndex(index) {
+        return this.length > 0 && index >= 0 && index < this.length;
     }
 }
 
