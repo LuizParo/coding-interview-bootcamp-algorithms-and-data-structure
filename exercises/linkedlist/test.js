@@ -196,6 +196,15 @@ describe('RemoveAt', () => {
     }).not.toThrow();
   });
 
+  test('removeAt doesnt crash on an index greater than the list size', () => {
+    const l = new List();
+    expect(() => {
+      const l = new List();
+      l.insertFirst('a');
+      l.removeAt(10);
+    }).not.toThrow();
+  });
+
   test('removeAt deletes the first node', () => {
     const l = new List();
     l.insertLast(1);

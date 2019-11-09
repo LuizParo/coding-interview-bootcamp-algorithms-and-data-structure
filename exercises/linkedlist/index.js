@@ -363,6 +363,27 @@ class LinkedList {
 
         return node;
     }
+
+    removeAt(index) {
+        if (!this.head || index < 0) {
+            return;
+        }
+
+        if (index === 0) {
+            return this.removeFirst();
+        }
+
+        const previous = this.getAt(index - 1);
+        if (!previous) {
+            return;
+        }
+        
+        const nodeToBeRemoved = previous.next;
+        if (nodeToBeRemoved) {
+            previous.next = nodeToBeRemoved.next;
+            nodeToBeRemoved.next = null;
+        }
+    }
 }
 
 module.exports = { Node, LinkedList };
