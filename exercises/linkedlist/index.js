@@ -269,7 +269,7 @@ class LinkedList {
     }
 
     insertFirst(data) {
-        this.head = new Node(data, this.head);
+        this.insertAt(data, 0);
     }
 
     size() {
@@ -285,10 +285,13 @@ class LinkedList {
     }
 
     getFirst() {
-        return this.head;
+        return this.getAt(0);
     }
 
     getLast() {
+        // not performatic because of double looping the linked list
+        // return this.getAt(this.size() - 1);
+
         if (!this.head) {
             return null;
         }
@@ -349,7 +352,7 @@ class LinkedList {
         }
 
         if (index === 0) {
-            return this.getFirst();
+            return this.head;
         }
 
         let node = this.head;
@@ -391,7 +394,8 @@ class LinkedList {
         }
 
         if (index === 0) {
-            return this.insertFirst(data);
+            this.head = new Node(data, this.head);
+            return;
         }
 
         const previous = this.getAt(index - 1);
