@@ -342,6 +342,27 @@ class LinkedList {
             this.head = new Node(data);
         }
     }
+
+    getAt(index) {
+        if (!this.head) {
+            return null;
+        }
+
+        if (index === 0) {
+            return this.getFirst();
+        }
+
+        let node = this.head;
+        for (let i = 1; i <= index; i++) {
+            if (!node) {
+                break;
+            }
+
+            node = node.next
+        }
+
+        return node;
+    }
 }
 
 module.exports = { Node, LinkedList };
