@@ -60,6 +60,27 @@ class LinkedList {
         this.length++;
     }
 
+    insertAt(element, index) {
+        if (index === 0) {
+            return this.insertFirst(element);
+        }
+
+        if (index >= this.length) {
+            return this.insertLast(element);
+        }
+
+        if (!this._checkValidIndex(index)) {
+            return null;
+        }
+
+        const indexNode = this.getAt(index);
+        const newNode = new Node(element, indexNode.prev, indexNode);
+
+        indexNode.prev.next = newNode;
+
+        this.length++;
+    }
+
     removeFirst() {
         if (this.length === 0) {
             return null;
@@ -182,6 +203,38 @@ class LinkedList {
 
     size() {
         return this.length;
+    }
+
+    forEach(fn) {
+        if (this.length === 0) {
+            return;
+        }
+
+        let node = this.head;
+        fn(node);
+
+        for (let i = 1; i < this.length; i++) {
+            node = (node || {}).next;
+            fn(node);
+        }
+    }
+
+    [Symbol.iterator]() {
+        const length = this.length;
+        const getAt = this.getAt.bind(this);
+
+        return {
+            current: 0,
+            last: length,
+            next: function() {
+                const node = getAt(this.current);
+
+                return {
+                    value: node,
+                    done: this.current++ >= length
+                };
+            }
+        };
     }
 
     _insertFirstElement(element) {
