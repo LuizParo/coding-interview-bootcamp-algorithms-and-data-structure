@@ -384,6 +384,24 @@ class LinkedList {
             nodeToBeRemoved.next = null;
         }
     }
+
+    insertAt(data, index) {
+        if (index < 0) {
+            return;
+        }
+
+        if (index === 0) {
+            return this.insertFirst(data);
+        }
+
+        const previous = this.getAt(index - 1);
+        if (!previous || !previous.next) {
+            return this.insertLast(data);
+        }
+
+        const next = previous.next;
+        previous.next = new Node(data, next);
+    }
 }
 
 module.exports = { Node, LinkedList };
