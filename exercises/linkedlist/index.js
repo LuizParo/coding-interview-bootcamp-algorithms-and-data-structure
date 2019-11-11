@@ -120,10 +120,6 @@
 //             this.head.prev = null;
 //         }
 
-//         if (this.length <= 0) {
-//             return this._insertFirstElement(newLastNode.data);
-//         }
-
 //         this.tail = newLastNode;
 //     }
 
@@ -175,6 +171,10 @@
 
 //         if (index === 0) {
 //             return this.head;
+//         }
+
+//         if (index === this.length - 1) {
+//             return this.tail;
 //         }
 
 //         let node = null;
@@ -289,7 +289,7 @@ class LinkedList {
     }
 
     getLast() {
-        // not performatic because of double looping the linked list
+        // not performatic because we'd be double looping the linked list
         // return this.getAt(this.size() - 1);
 
         if (!this.head) {
@@ -416,6 +416,15 @@ class LinkedList {
 
             currentNode = currentNode.next;
             currentIndex++;
+        }
+    }
+
+    *[Symbol.iterator]() {
+        let node = this.head;
+
+        while (node) {
+            yield node;
+            node = node.next;
         }
     }
 }
