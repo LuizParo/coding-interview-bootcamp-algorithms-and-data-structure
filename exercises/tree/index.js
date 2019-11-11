@@ -32,8 +32,20 @@ class Tree {
         this.root = null;
     }
 
+    // my first solution
     traverseBF(fn) {
+        const nodes = [this.root];
 
+        while(nodes.length != 0) {
+            const currentNode = nodes[0];
+            fn(currentNode);
+
+            if (currentNode.children) {
+                currentNode.children.forEach(node => nodes.push(node));
+            }
+
+            nodes.splice(0, 1);
+        }
     }
 
     traverseDF(fn) {
