@@ -13,6 +13,23 @@
 //   circular(l) // true
 
 // my first solution
+// function circular(list) {
+//     let slow = list.getFirst();
+//     let fast = list.getFirst();
+
+//     while (fast && fast.next && fast.next.next) {
+//         slow = slow.next;
+//         fast = fast.next.next;
+
+//         if (slow === fast) {
+//             return true;
+//         }
+//     }
+
+//     return false;
+// };
+
+// solution #1
 function circular(list) {
     let slow = list.getFirst();
     let fast = list.getFirst();
