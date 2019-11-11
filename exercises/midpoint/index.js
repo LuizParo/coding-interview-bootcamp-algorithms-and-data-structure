@@ -13,22 +13,35 @@
 //   midpoint(l); // returns { data: 'b' }
 
 // my first solution
+// function midpoint(list) {
+//     let slow = list.head;
+//     let fast = list.head;
+
+//     while(slow) {
+//         if (!fast || !fast.next || !fast.next.next) {
+//             break;
+//         }
+
+//         slow = slow.next;
+//         fast = fast.next.next;
+//     }
+
+//     return {
+//         data: slow.data
+//     };
+// };
+
+// solution #1
 function midpoint(list) {
-    let slow = list.head;
-    let fast = list.head;
+    let slow = list.getFirst();
+    let fast = list.getFirst();
 
-    while(slow) {
-        if (!fast || !fast.next || !fast.next.next) {
-            break;
-        }
-
+    while (fast.next && fast.next.next) {
         slow = slow.next;
         fast = fast.next.next;
     }
 
-    return {
-        data: slow.data
-    };
+    return slow;
 };
 
 module.exports = midpoint;
