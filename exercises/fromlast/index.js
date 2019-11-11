@@ -12,15 +12,33 @@
 //    fromLast(list, 2).data // 'b'
 
 // my first solution
+// function fromLast(list, n) {
+//     let slow = list.getFirst();
+//     let fast = list.getFirst();
+
+//     for (let i = 0; i < n; i++) {
+//         fast = fast.next;
+//     }
+
+//     while(fast.next) {
+//         slow = slow.next;
+//         fast = fast.next;
+//     }
+
+//     return slow;
+// };
+
+// solution #1
 function fromLast(list, n) {
     let slow = list.getFirst();
     let fast = list.getFirst();
 
-    for (let i = 0; i <= n; i++) {
+    while (n > 0) {
         fast = fast.next;
+        n--;
     }
 
-    while(fast) {
+    while(fast.next) {
         slow = slow.next;
         fast = fast.next;
     }
