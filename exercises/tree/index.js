@@ -33,23 +33,35 @@ class Tree {
     }
 
     // my first solution
-    traverseBF(fn) {
-        const nodes = [this.root];
+    // traverseBF(fn) {
+    //     const nodes = [this.root];
 
-        while(nodes.length != 0) {
-            const currentNode = nodes[0];
-            fn(currentNode);
+    //     while(nodes.length != 0) {
+    //         const currentNode = nodes[0];
+    //         fn(currentNode);
 
-            if (currentNode.children) {
-                currentNode.children.forEach(node => nodes.push(node));
-            }
+    //         if (currentNode.children) {
+    //             currentNode.children.forEach(node => nodes.push(node));
+    //         }
 
-            nodes.splice(0, 1);
-        }
-    }
+    //         nodes.splice(0, 1);
+    //     }
+    // }
 
     traverseDF(fn) {
 
+    }
+
+    // solution #1
+    traverseBF(fn) {
+        const arr = [this.root];
+
+        while(arr.length) {
+            const node = arr.shift();
+            arr.push(...node.children);
+
+            fn(node);
+        }
     }
 }
 
