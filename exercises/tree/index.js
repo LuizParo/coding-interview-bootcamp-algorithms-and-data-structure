@@ -48,16 +48,16 @@ class Tree {
     //     }
     // }
 
-    traverseDF(fn) {
-        const nodes = [this.root];
+    // traverseDF(fn) {
+    //     const nodes = [this.root];
 
-        while(nodes.length) {
-            const currentNode = nodes.shift();
-            fn(currentNode);
+    //     while(nodes.length) {
+    //         const currentNode = nodes.shift();
+    //         fn(currentNode);
 
-            nodes.unshift(...currentNode.children);
-        }
-    }
+    //         nodes.unshift(...currentNode.children);
+    //     }
+    // }
 
     // solution #1
     traverseBF(fn) {
@@ -66,6 +66,17 @@ class Tree {
         while(arr.length) {
             const node = arr.shift();
             arr.push(...node.children);
+
+            fn(node);
+        }
+    }
+
+    traverseDF(fn) {
+        const arr = [this.root];
+
+        while(arr.length) {
+            const node = arr.shift();
+            arr.unshift(...node.children);
 
             fn(node);
         }
