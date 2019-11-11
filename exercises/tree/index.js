@@ -49,7 +49,14 @@ class Tree {
     // }
 
     traverseDF(fn) {
+        const nodes = [this.root];
 
+        while(nodes.length) {
+            const currentNode = nodes.shift();
+            fn(currentNode);
+
+            nodes.unshift(...currentNode.children);
+        }
     }
 
     // solution #1
