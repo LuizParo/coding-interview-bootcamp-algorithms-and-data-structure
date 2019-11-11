@@ -22,11 +22,7 @@ class Node {
     }
 
     remove(data) {
-        const indexToRemove = this.children.findIndex(node => node.data === data);
-        
-        if (indexToRemove !== -1) {
-            this.children.splice(indexToRemove, 1);
-        }
+        this.children = this.children.filter(node => node.data !== data);
     }
 }
 
