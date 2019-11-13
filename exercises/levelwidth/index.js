@@ -11,6 +11,32 @@
 // 4       5
 // Answer: [1, 3, 2]
 
-function levelWidth(root) {}
+// my first solution
+function levelWidth(root) {
+    const stopSignal = 'stop';
+
+    const nodes = [root, stopSignal];
+    const counterByLevel = [0];
+    let currentLevel = 0;
+
+    while (nodes.length > 1) {
+        const currentNode = nodes.shift();
+
+        if (currentNode === stopSignal) {
+            currentLevel++;
+            counterByLevel[currentLevel] = 0;
+
+            nodes.push(stopSignal);
+            continue;
+        }
+
+        const children = currentNode.children || [];
+        nodes.push(...children);
+
+        counterByLevel[currentLevel]++;
+    }
+
+    return counterByLevel;
+};
 
 module.exports = levelWidth;
