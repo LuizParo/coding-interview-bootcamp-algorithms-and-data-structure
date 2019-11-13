@@ -20,44 +20,61 @@ class Node {
     }
 
     // my first solution
+    // insert(data) {
+    //     if (data < this.data) {
+    //         if (this.left) {
+    //             this.left.insert(data);
+    //             return;
+    //         }
+
+    //         this.left = new Node(data);
+    //         return;
+    //     }
+
+    //     if (this.right) {
+    //         this.right.insert(data);
+    //         return;
+    //     }
+
+    //     this.right = new Node(data);
+    //     return;
+    // }
+
+    // contains(data) {
+    //     if (data === this.data) {
+    //         return this;
+    //     }
+
+    //     if (data < this.data) {
+    //         if (this.left) {
+    //             return this.left.contains(data);
+    //         }
+
+    //         return null;
+    //     }
+
+    //     if (this.right) {
+    //         return this.right.contains(data);
+    //     }
+
+    //     return null;
+    // }
+
+    // solution #1
     insert(data) {
-        if (data < this.data) {
-            if (this.left) {
-                this.left.insert(data);
-                return;
-            }
-
+        if (data < this.data && this.left) {
+            this.left.insert(data);
+        } else if (data < this.data) {
             this.left = new Node(data);
-            return;
-        }
-
-        if (this.right) {
+        } else if (data > this.data && this.right) {
             this.right.insert(data);
-            return;
+        } else {
+            this.right = new Node(data);
         }
-
-        this.right = new Node(data);
-        return;
     }
 
     contains(data) {
-        if (data === this.data) {
-            return this;
-        }
 
-        if (data < this.data) {
-            if (this.left) {
-                return this.left.contains(data);
-            }
-
-            return null;
-        }
-
-        if (this.right) {
-            return this.right.contains(data);
-        }
-
-        return null;
     }
 };
 
