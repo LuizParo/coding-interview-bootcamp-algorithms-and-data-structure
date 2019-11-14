@@ -6,26 +6,47 @@
 // the parent
 
 // my first solution
+// function validate(node, min = null, max = null) {
+//     if (!node) {
+//         return true;
+//     }
+
+//     if (!min && !max) {
+//         return validate(node.left, min, node.data);
+//     }
+
+//     const data = node.data;
+//     if (data < min || data > max) {
+//         return false;
+//     }
+
+//     if (!node.left) {
+//         return validate(node.right, node.data, max);
+//     }
+
+//     if (!node.right) {
+//         return validate(node.left, min, node.data);
+//     }
+
+//     return true;
+// };
+
+// solution #1
 function validate(node, min = null, max = null) {
-    if (!node) {
-        return true;
-    }
-
-    if (!min && !max) {
-        return validate(node.left, min, node.data);
-    }
-
-    const data = node.data;
-    if (data > min && data > max) {
+    if (max && node.data > max) {
         return false;
     }
 
-    if (!node.left) {
-        return validate(node.right, node.data, max);
+    if (min && node.data < min) {
+        return false;
     }
 
-    if (!node.right) {
-        return validate(node.left, min, node.data);
+    if (node.left && !validate(node.left, min, node.data)) {
+        return false;
+    }
+
+    if (node.right && !validate(node.right, node.data, max)) {
+        return false;
     }
 
     return true;
