@@ -83,8 +83,41 @@ function mergeSort(arr) {
 
 }
 
+// my first implementation
 function merge(left, right) {
+    const result = [];
+    let currentIndex = 0;
+    let currentIndexForLeft = 0;
+    let currentIndexForRight = 0;
 
+    while(currentIndexForLeft < left.length && currentIndexForRight < right.length) {
+        const currentLeft = left[currentIndexForLeft];
+        const currentRight = right[currentIndexForRight];
+
+        if (currentLeft < currentRight) {
+            result[currentIndex] = currentLeft;
+            currentIndexForLeft++;
+        } else {
+            result[currentIndex] = currentRight;
+            currentIndexForRight++;
+        }
+
+        currentIndex++;
+    }
+
+    while (currentIndexForLeft < left.length) {
+        result[currentIndex] = left[currentIndexForLeft];
+        currentIndexForLeft++;
+        currentIndex++;
+    }
+
+    while (currentIndexForRight < right.length) {
+        result[currentIndex] = right[currentIndexForRight];
+        currentIndexForRight++;
+        currentIndex++;
+    }
+
+    return result;
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };
