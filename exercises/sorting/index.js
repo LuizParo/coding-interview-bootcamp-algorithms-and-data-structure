@@ -79,8 +79,20 @@ function selectionSort(arr) {
     return arr;
 }
 
+// my first implementation
 function mergeSort(arr) {
+    if (arr.length === 1) {
+        return arr;
+    }
 
+    const middleIndex = Math.ceil(arr.length / 2);
+    const startToMiddleArray = arr.slice(0, middleIndex);
+    const middleToEndArray = arr.slice(middleIndex, arr.length);
+
+    const sortedStartToMiddleArray = mergeSort(startToMiddleArray);
+    const sortedMiddleToEndArray = mergeSort(middleToEndArray);
+
+    return merge(sortedStartToMiddleArray, sortedMiddleToEndArray);
 }
 
 // my first implementation
