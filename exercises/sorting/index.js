@@ -84,40 +84,55 @@ function mergeSort(arr) {
 }
 
 // my first implementation
+// function merge(left, right) {
+//     const result = [];
+//     let currentIndex = 0;
+//     let currentIndexForLeft = 0;
+//     let currentIndexForRight = 0;
+
+//     while(currentIndexForLeft < left.length && currentIndexForRight < right.length) {
+//         const currentLeft = left[currentIndexForLeft];
+//         const currentRight = right[currentIndexForRight];
+
+//         if (currentLeft < currentRight) {
+//             result[currentIndex] = currentLeft;
+//             currentIndexForLeft++;
+//         } else {
+//             result[currentIndex] = currentRight;
+//             currentIndexForRight++;
+//         }
+
+//         currentIndex++;
+//     }
+
+//     while (currentIndexForLeft < left.length) {
+//         result[currentIndex] = left[currentIndexForLeft];
+//         currentIndexForLeft++;
+//         currentIndex++;
+//     }
+
+//     while (currentIndexForRight < right.length) {
+//         result[currentIndex] = right[currentIndexForRight];
+//         currentIndexForRight++;
+//         currentIndex++;
+//     }
+
+//     return result;
+// }
+
+// solution #1
 function merge(left, right) {
-    const result = [];
-    let currentIndex = 0;
-    let currentIndexForLeft = 0;
-    let currentIndexForRight = 0;
+    const results = [];
 
-    while(currentIndexForLeft < left.length && currentIndexForRight < right.length) {
-        const currentLeft = left[currentIndexForLeft];
-        const currentRight = right[currentIndexForRight];
-
-        if (currentLeft < currentRight) {
-            result[currentIndex] = currentLeft;
-            currentIndexForLeft++;
+    while (left.length && right.length) {
+        if (left[0] < right[0]) {
+            results.push(left.shift());
         } else {
-            result[currentIndex] = currentRight;
-            currentIndexForRight++;
+            results.push(right.shift());
         }
-
-        currentIndex++;
     }
 
-    while (currentIndexForLeft < left.length) {
-        result[currentIndex] = left[currentIndexForLeft];
-        currentIndexForLeft++;
-        currentIndex++;
-    }
-
-    while (currentIndexForRight < right.length) {
-        result[currentIndex] = right[currentIndexForRight];
-        currentIndexForRight++;
-        currentIndex++;
-    }
-
-    return result;
+    return [...results, ...left, ...right];
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };
