@@ -34,24 +34,45 @@ function bubbleSort(arr) {
 }
 
 // my first solution
+// function selectionSort(arr) {
+//     for (let i = 0; i < arr.length; i++) {
+//         let indexOfMin = i;
+//         let min = arr[i];
+
+//         for (let j = i + 1; j < arr.length; j++) {
+//             if (arr[j] < min) {
+//                 min = arr[j];
+//                 indexOfMin = j;
+//             }
+//         }
+
+//         if (arr[i] > arr[indexOfMin]) {
+//             const lesser = arr[indexOfMin];
+//             const greater = arr[i];
+
+//             arr[i] = lesser;
+//             arr[indexOfMin] = greater;
+//         }
+//     }
+
+//     return arr;
+// }
+
+// solution #1
 function selectionSort(arr) {
     for (let i = 0; i < arr.length; i++) {
         let indexOfMin = i;
-        let min = arr[i];
 
         for (let j = i + 1; j < arr.length; j++) {
-            if (arr[j] < min) {
-                min = arr[j];
+            if (arr[j] < arr[indexOfMin]) {
                 indexOfMin = j;
             }
         }
 
-        if (arr[i] > arr[indexOfMin]) {
+        if (indexOfMin !== i) {
             const lesser = arr[indexOfMin];
-            const greater = arr[i];
-
+            arr[indexOfMin] = arr[i];
             arr[i] = lesser;
-            arr[indexOfMin] = greater;
         }
     }
 
